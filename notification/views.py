@@ -105,17 +105,17 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 def category_page(request, slug):
     if slug == 'no_category':
         category = "미분류"
-        post_list = News.objects.filter(category = None)
+        news_list = News.objects.filter(category = None)
     else:
         category = Category.objects.get(slug=slug)
-        post_list = News.objects.filter(category= category)
+        news_list = News.objects.filter(category= category)
     return render(
         request,
-        'notification/post_list.html',
+        'notification/news_list.html',
         {
-            'post_list' : post_list,
+            'news_list' : news_list,
             'categories': Category.objects.all(),
-            'no_category_post_count': News.objects.filter(category=None).count(),
+            'no_category_news_count': News.objects.filter(category=None).count(),
             'category': category,
         }
     )

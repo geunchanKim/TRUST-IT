@@ -1,48 +1,48 @@
 {% extends 'notification/base.html' %}
 {% load crispy_forms_tags %}
 {% block head_title %}
-    {{ post.title }} - notification
+    {{ news.title }} - notification
 {% endblock %}
 
 {% block main_area %}
     <div id="post-area">
-        {% if post.category %}
-        <span class="badge badege-secondary float-right">{{ post.category }}</span>
+        {% if news.category %}
+        <span class="badge badege-secondary float-right">{{ news.category }}</span>
         {% else %}
         <span class="badge badge-secondary float-right">미분류</span>
         {% endif %}
         <!-- Title -->
-        <h1 class="mt-4">{{ post.title }}</h1>
-        <h5 class="text-muted">{{ post.hook_text }}</h5>
+        <h1 class="mt-4">{{ news.title }}
+        <!-- <h5 class="text-muted">{{ news.hook_text }}</h5> -->
 
         <!-- Author -->
-        <p class="lead">
-            by
-            <a href="#">{{ post.author | upper}}</a>
-        </p>
-
+      
+         
+            <i href="#" style="font-size:12px;"> from{{ news.author | upper}}</i>
+      
+        </h1>
         <hr>
-        {% if user.is_authenticated and user == post.author %}
+        <!-- {% if user.is_authenticated and user == post.author %}
             <a class="btn btn-info btn-sm float-right" role="button" href="/notification/update_post/{{post.pk}}/">
                 <i class="fas fa-pen"></i>Edit Post
             </a>
-        {% endif %}
+        {% endif %} -->
         <!-- Date/Time -->
-        <p>{{ post.created_at }}</p>
+        <p>{{ news.created_at }}</p>
 
         <hr>
 
         <!-- Preview Image -->
-        {% if post.head_image %}
+        <!-- {% if post.head_image %}
         <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{post.title}} head_image">
         {% else %}
         <img class="img-fluid rounded" src="https://picsum.photos/seed/{{p.id}}/800/200" alt="random_image">
         {% endif %}
-        <hr>
+        <hr> -->
 
         <!-- Post Content -->
-        <p>{{ post.content }}</p>
-        {% if post.tags %}
+        <p>{{ news.content }}</p>
+        <!-- {% if post.tags %}
             <i class="fas fa-tags"></i>
             {% for tag in post.tags.all %}
                 <a href="{{ tag.get_absolute_url }}" class="badge rounded-pill bg-primary">
@@ -50,21 +50,21 @@
                 </a>
             {% endfor %}
             <br/><br/>
-        {% endif %}
-        {% if post.file_upload %}
-        <a href="{{ post.file_upload.url }}" class="btn btn-primary" role="button" download>Download
+        {% endif %} -->
+        {% if news.file_upload %}
+        <a href="{{ news.file_upload.url }}" class="btn btn-primary" role="button" download>Download
 
-            {% if post.get_file_ext == 'csv' %}
+            {% if news.get_file_ext == 'csv' %}
             <i class="fas fa-file-csv"></i>
-            {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+            {% elif news.get_file_ext == 'xlsx' or news.get_file_ext == 'xls' %}
             <i class="fas fa-file-exel"></i>
-            {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+            {% elif news.get_file_ext == 'docx' or news.get_file_ext == 'doc' %}
             <i class="fas fa-file-word"></i>
             {% else %}
             <i class="fas fa-file"></i>
             {% endif %}
 
-            {{ post.get_file_name }}
+            {{ news.get_file_name }}
         </a>
         {% endif %}
         <hr>
