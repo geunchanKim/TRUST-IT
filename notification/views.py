@@ -1,47 +1,151 @@
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, redirect
+from pdb import post_mortem
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.shortcuts import get_object_or_404
+from .models import News, Category, Tag
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
+from django.db.models import Q
+# Create your views here.
 
-from django.views.generic import ListView
-# from .models import Notice
-
-class NoticeListView(ListView):
-    model = Post
-    paginate_by = 10
-    template_name = 'notification/indexNotification.html'  #DEFAULT : <app_label>/<model_name>_list.html
-    context_object_name = 'notice_list'        #DEFAULT : <model_name>_list
-
-    def get_queryset(self):
-        notice_list = Post.objects.order_by('-pk') 
-        return notice_list
+# CBV로 웹 사이트 만들기
+class PostList(ListView):
+    model = News
+    ordering = '-pk'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        paginator = context['paginator']
-        page_numbers_range = 5
-        max_index = len(paginator.page_range)
-
-        page = self.request.GET.get('page')
-        current_page = int(page) if page else 1
-
-        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-        end_index = start_index + page_numbers_range
-        if end_index >= max_index:
-            end_index = max_index
-
-        page_range = paginator.page_range[start_index:end_index]
-        context['page_range'] = page_range
-
+        context = super(PostList, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = News.objects.filter(category=None).count()
         return context
 
-# def index(request):
-#     posts = Post.objects.all().order_by('-pk')
+class PostDetail(DetailView):
+    model = News
 
-#     return render(
-#         request,
-#         'notification/indexNotification.html',
-#         {
-#            'posts' : posts,
-#         }
-#     )
+    def get_context_data(self, **kwargs):
+        context = super(PostDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = News.objects.filter(category=None).count()
+    
+        return context
 
-# Create your views here.
+class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = News
+    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
+            form.instance.author = current_user
+            response = super(PostCreate, self).form_valid(form)
+            tags_str = self.request.POST.get('tags_str')
+            if tags_str:
+                tags_str = tags_str.strip()
+                tags_str = tags_str.replace(',', ';')
+                tags_list = tags_str.split(';')
+
+                for t in tags_list:
+                    t = t.strip()
+                    tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                    if is_tag_created:
+                        tag.slug = slugify(t, allow_unicode=True)
+                        tag.save()
+                    self.object.tags.add(tag)
+            return response
+        else:
+            return redirect('/notification/')
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = News
+    fields = ['title', 'hook_text', 'content', 'head_image', 'file_upload', 'category']
+    template_name = 'notification/post_update_form.html'
+
+    def form_valid(self, form):
+        response = super(PostUpdate, self).form_valid(form)
+        self.object.tags.clear()
+
+        tags_str = self.request.POST.get('tags_str')
+        if tags_str:
+            tags_str = tags_str.strip()
+            tags_str = tags_str.replace(',',';')
+            tags_list = tags_str.split(';')
+
+            for t in tags_list:
+                    t = t.strip()
+                    tag, is_tag_created = Tag.objects.get_or_create(name=t)
+                    if is_tag_created:
+                        tag.slug = slugify(t, allow_unicode=True)
+                        tag.save()
+                    self.object.tags.add(tag)
+            return response
+
+    def get_context_data(self, **kwargs):
+        context=super(PostUpdate, self).get_context_data()
+        if self.object.tags.exists():
+            tags_str_list = list()
+            for t in self.object.tags.all():
+                tags_str_list.append(t.name)
+            context['tags_str_default'] = ';'.join(tags_str_list)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(PostUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+    
+  
+    
+   
+            
+def category_page(request, slug):
+    if slug == 'no_category':
+        category = "미분류"
+        post_list = News.objects.filter(category = None)
+    else:
+        category = Category.objects.get(slug=slug)
+        post_list = News.objects.filter(category= category)
+    return render(
+        request,
+        'notification/post_list.html',
+        {
+            'post_list' : post_list,
+            'categories': Category.objects.all(),
+            'no_category_post_count': News.objects.filter(category=None).count(),
+            'category': category,
+        }
+    )
+def tag_page(request, slug):
+    tag = Tag.objects.get(slug=slug)
+    post_list = tag.post_set.all()
+    return render(
+        request,
+        'notification/post_list.html',
+        {
+            'post_list' : post_list,
+            'tag' : tag,
+            'categories': Category.objects.all(),
+            'no_category_post_count': News.objects.filter(category=None).count(),
+        }
+    )
+
+
+class PostSearch(PostList):
+    paginate_by: None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        post_list = News.objects.filter(
+            Q(title__contains=q) | Q(tags__name__contains=q)
+        ).distinct()
+        return post_list
+
+    def get_context_data(self, **kwargs):
+        context = super(PostSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info']=f'Search: {q} ({self.get_queryset().count()})'
+        return context
