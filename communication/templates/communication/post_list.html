@@ -11,19 +11,19 @@
               border-bottom: 1px solid #444444;
               padding: 10px;
             }
-            a:link{
-                color:pink;
-                test-decoration: none;
+            #post_title{
+                color:#7B7473;
+                text-decoration:none;
             }
-            a:visited {
+            {% comment %} #post_title:visited {
                 color : black;
                 text-decoration: none;
-              }
-            a:hover {
+              } {% endcomment %}
+            #post_title:hover {
                 color : red;
                 text-decoration: underline;
               }
-            a:active {
+            #post_title:active {
                 color : green;
                 text-decoration: none;
               }
@@ -31,7 +31,7 @@
     </head>
     {%if user.is_authenticated%}
         {%if user.is_superuser or user.is_staff%}
-            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/create_post/">
+            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/create_post/" style="background-color:yellow; border:5px,black;">
                 <i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
         {%endif%}
     {%endif%}
@@ -56,7 +56,7 @@
                 <!-- Blog Post -->
                 <tr class="text-center">
                     <td>{{ p.id }}</td>
-                    <td><a class="post_title" href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
+                    <td><a id="post_title" href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
                     <td>{{ p.author }}</td>
                     <td>{{ p.created_at }}</td>
                     <td>{% if p.tags.exists %}
