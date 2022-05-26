@@ -5,57 +5,67 @@
 {% endblock %}
 
 {% block main_area %}
+    <head>
+        <style>
+            post_line {
+                display: inline;
+            }
+        </style>
+    </head>
     <div id= "post-area">
         {% if post.category %}
         <span class="badge badge-secondary float-right">{{ post.category }}</span>
         {% else %}
         <span class="badge badge-secondary float-right">미분류</span>
         {% endif %}
+
+        {% if user.is_authenticated and user == post.author%}
+            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/update_post/{{post.pk}}/" style="float: left;">
+                <i class="fas fa-pen"></i>Edit Post</a>
+        {%endif%}
+
+        <div class="post_line">
         <!-- Title -->
-        <h1 class="mt-4">{{ post.title }}</h1>
+        <h1 class="mt-4">{{ post.title }}
+        {% if post.tags.exists %}
+         <i style="font-size:12px; margin-left:10%;" class ="fas fa-tags"></i>
+         {% for tag in post.tags.all %}
+             <a href="{{tag.get_absoulte_url}}" class="badge rounded-pill bg-primary" style="font-size:12px">
+                 {{tag}}
+             </a>
+         {% endfor %}
+        {% endif %}
+            </h1>
+        </div>
+
+
         <h5 class="text-muted">{{post.hook_text}}</h5>
 
         <!-- Author -->
-        <p class="lead">
-            by
+        <p class="lead" style="font-size:15px">
+            글쓴이 : 
             <a href="#">{{post.author |upper}}</a>
         </p>
+         <!-- Date/Time -->
+         <p style="font-size:10px">{{ post.created_at }}</p>
 
-        <hr>
 
-        {% if user.is_authenticated and user == post.author%}
-            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/update_post/{{post.pk}}/">
-                <i class="fas fa-pen"></i>Edit Post</a>
-        {%endif%}
-        <!-- Date/Time -->
-        <p>{{ post.created_at }}</p>
+        <div style="width: 100%; border: 1px solid #C6BDBB;">
+            <!-- Preview image-->
+                {% if post.head_image %}
+                    <img class="img-fluid rounded" src="{{post.head_image.url}}" alt="{{ post.title }} head_image" >
+                {% comment %} {% else %}
+                    <img class = "img-fluid rounded" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image"> {% endcomment %}
+                {% endif %}
 
-        <hr>
 
-        <!-- Preview image-->
-            {% if post.head_image %}
-                <img class="img-fluid rounded" src="{{post.head_image.url}}" alt="{{ post.title }} head_image" >
-            {% else %}
-                <img class = "img-fluid rounded" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image">
-            {% endif %}
-
-        <hr>
-
-        <!-- Post Content -->
-        <p>{{ post.content }}</p>
-
-        {% if post.tags.exists %}
-            <i class ="fas fa-tags"></i>
-            {% for tag in post.tags.all %}
-                <a href="{{tag.get_absoulte_url}}" class="badge rounded-pill bg-primary">
-                    {{tag}}
-                </a>
-            {% endfor %}
-            <br><br>
-        {% endif %}
+            <!-- Post Content -->
+            <p style="padding:5%">{{ post.content }}</p>
+        </div>
             
 
         {% if post.file_upload %}
+        
             <a href=" {{ post.file_upload.url }}" class="btn btn-primary" role="button" download>Download
                 {% if post.get_file_ext == 'csv' %}
                     <i class="fas fa-file-csv"></i>
@@ -69,15 +79,16 @@
 
                 {{ post.get_file_name }}
             </a>
+            <hr>
         {% endif %}
 
-        <hr>
+
     </div>
 
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">댓글</h5>
             <div class="card-body">
                 {% if user.is_authenticated %}
                 <form id="comment-form" method="POST" action="{{post.get_absolute_url}}new_comment/">
@@ -85,11 +96,12 @@
                     <div class="form-group">
                         {{ comment_form | crispy }}
                     </div>
+                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 {%else%}
                     <a role="button" class="btn btn-outline-dark btn-block btn-sm" 
-                    href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
+                    href="#" data-toggle="modal" data-target="#loginModal">로그인을 해주세요!!</a>
                 {%endif%}
             </div>
         </div>
