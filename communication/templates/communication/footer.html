@@ -11,87 +11,150 @@
     <script src="https://kit.fontawesome.com/1051c2b565.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- S : 푸터 -->
-<footer id="footer">
-    <div id="footerInner">
-        <div class="section02">
-            <div class="section area">
-                <div class="link">
-                    <a href="../07_sub/04_sub.html">회사소개 </a>
-                    <a href="../07_sub/04_sub.html">이용약관 </a>
-                    <a href="../07_sub/04_sub.html">개인정보처리방침 </a>
-                    <a href="../07_sub/04_sub.html">입점/제휴문의 </a>
-                    <a href="../07_sub/05_sub.html">대량구매문의 </a>
-                    <a href="../01_sub/05_sub.html">오시는 길</a>
-                    <a href="../07_sub/04_sub.html">매장안내 </a>
-                    <a href="../07_sub/04_sub.html">임직원인증 </a>
-                    
-                </div>
-                
-                <div class="icon">
-                <a href="https://www.instagram.com/knu_cse_pr/" target="_blank"><img src="../img/include/instagram.png"/></a>
-                    <a href="https://www.facebook.com/CSEatKNU/" target="_blank"><img src="../img/include/facebook.png"/></a>
-                    
-                    
-                </div>
-                
-                
-                
-                
-          </div>
-        </div>
-        <div class="section03">
-            <div class="section area">
-                <p class="address">(주) GETIT<br />
-대표이사 : 이정원 | 대구광역시 북구 경대로 겟잇빌딩 TRUST IT | 호스팅 사업자 : GET-IT 시스템 | 사업자등록번호 : 01234567890 <br />
-TEL. 053-950-5550/6370&nbsp;&nbsp;&nbsp;FAX. 053-957-4846&nbsp;&nbsp;&nbsp;E-mail. trust_it@geiit.com<br/>
-                Copyright 2022 GET-IT TRUST-IT All rights reserved</p>
-                <p class="select">
-                
-                
-                <aside class="familysite-box">
-                        <a href="" class="family-open-btn">관련연구소<i class="material-icons">&#xE313;</i></a>
-                        <ul class="family-list">
-                            <li><a href="#" target="_blank" title="새창으로열기">물티슈성분연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">크림성분연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">아기음식연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">임신부용품연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">보습성분연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">화장품기술연구소</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">세제성분연구소</a></li>
-                            
-                        </ul>
+    <style>
+        /* Footer
+      ------------------------------------------------------ */
+      .section{position:relative}
+      #footer{clear:both;width:100%;padding:0;}
+      #footer:after {display:block;visibility:hidden;clear:both;content:""}
+      #footer .section01 {background:#fff;position:relative;height:68px;}
+      #footer .section01 h1 {position:absolute;top:15px;left:0;}
+      #footer .section01 .sns {position:absolute;top:20px;right:0;}
+      #footer .section02 {background:#313437;position:relative;height:52px;border-bottom:1px solid #252526;}
+      #footer .section02 .link {position:absolute;top:15px;left:0;}
+      #footer .section02 .link a {color:#aaa; padding:0 15px;border-right:1px solid #6d6d6e; font-size:12px}
+      #footer .section02 .link a:last-child {border-right:none;}
+      
+      #footer .section02 .icon {position:absolute; right:0; text-align:right}
+      #footer .section02 .icon a {float: right;}
+      #footer .section02 .icon a:last-child {right:0;}
+      
+      
+      #footer .section03 {background:#3d4044;position:relative;padding:30px 0 50px 0;}
+      #footer .section03 .select {position:absolute;top:0px;right:0;}
+      #footer .section03 .select select {background:#3d4044;color:#fff; padding:10px 10px;border:1px solid #6d6d6e;width:180px; }
+      #footer .address{display:inline-block; margin:0 0 0 18px; line-height:22px; color:#e1e1e1; font-weight:300; letter-spacing:0px;  font-size:14px}
+      
+      
+      /* 푸터 */
+      #m-footerInner{width:100%; display:none;}
+      #m-footerInner .footer-top{padding:3% 5%; background-color:#2b2b2c;}
+      .footer-top ul.footer-list{width:100%; margin:0 auto;}
+      .footer-top ul.footer-list li{display:inline-block; vertical-align:top; width:24%; text-align:center;}
+      .footer-top ul.footer-list li a{font-size:16px; color:#aaa;}
+      .footer-top ul.footer-list li:first-child a{color:#aaa;}
+      #m-footerInner .footer-bottom{width:100%; padding:5% 0 10% 0; background-color:#353536; text-align:center;}
+      .footer-bottom > p, .footer-bottom > span{display:inline-block; width:96%; margin:0 auto; text-align:center; color:#fff;}
+      .footer-bottom > p{margin-bottom:3%; line-height:22px;}
+      .footer-bottom > span > strong{font-weight:normal; color:#c3c3c3;}
+      #m-footerInner .footer-sns{width:94%; padding:3%; background:url(/images/layout/footer_logo.png) no-repeat 3% center; text-align:right;}
+      .footer-sns .sns-list{display:inline-block; width:49%; text-align:right;}
+      .footer-sns .sns-list li{display:inline-block; vertical-align:top; padding:0 2%;}
+      .footer-sns .sns-list li .fa{font-size:30px; color:#000;}
+      
+      /* footer :: familybox */
+      .familysite-box{position:relative; width:240px; float:right; /*margin-top:25px;*/}
+      .familysite-box > a{display:block; height:40px; line-height:40px; text-indent:20px; border:1px solid #b0b0b0; background-color:#3d4044; color:#fff; font-size:14px;}
+      .familysite-box > a i{position:absolute; right:15px; top:7px;}
+      .family-list{position:absolute; bottom:30px; left:0px; width:238px;  padding:10px 0; background-color:#3d4044; border:1px solid #b0b0b0; border-bottom:0;  z-index:11; display:none; }
+      .family-list a{display:block; padding:10px 15px; color:#fff; letter-spacing:-0.5px; font-size:14px;}
+      .family-list a:hover{color:#c48b3a}
+      
+      @media all and (max-width:768px){
+          /* FOOTER */
+          .footer-bottom > p{font-size:12px; line-height:20px;}
+          .footer-bottom > span{font-size:10px;}
+      }
+      @media all and (max-width:1220px){
+          #m-gnb{display:block; width:100%; height:100%; position:fixed; top:0px; right:-100%;  z-index:9999; overflow-y:auto; overflow-x:hidden; background:url(/images/layout/m_gnb_bg.jpg) repeat-y right top; background-size:70% auto; max-width:400px;}
+          /* Footer
+          ------------------------------------------------------ */
+          #footerInner{display:none;}
+          #m-footerInner{display:block;}
+          }
+          
+          @media all and (max-width:479px){
+          
+          /* footer
+          ------------------------------------------------------ */
+          #m-footerInner .footer-top{padding:4% 0;}
+          .footer-top ul.footer-list li{width:49%; margin-bottom:2%;}
+          .footer-top ul.footer-list li.marn{margin-bottom:0;}
+          .footer-top ul.footer-list li a{font-size:12px;}
+          #m-footerInner .footer-sns{background-size:150px auto;}
+          .footer-sns .sns-list li .fa{font-size:20px; color:#000;}
+          .footer-sns .sns-list li img{width:13px;}
+          }
+          
+          
+        </style>
+    <footer id="footer">
+        <div id="footerInner">
+            <div class="section02">
+                <div class="section area">
+                    <div class="link">
+                        <a href="#">회사소개 </a>
+                        <a href="#">이용약관 </a>
+                        <a href="#">개인정보처리방침 </a>
+                        <a href="#">입점/제휴문의 </a>
+                        <a href="#">대량구매문의 </a>
+                        <a href="#">오시는 길</a>
+                        <a href="#">매장안내 </a>
+                        <a href="#">임직원인증 </a>
                         
-                        
-                    </aside>
-                
+                    </div>
+                    
+              </div>
+            </div>
+            <div class="section03">
+                <div class="section area">
+                    <p class="address">(주) GETIT<br />
+    대표이사 : 이정원 | 대구광역시 북구 경대로 겟잇빌딩 TRUST IT | 호스팅 사업자 : GET-IT 시스템 | 사업자등록번호 : 01234567890 <br />
+    TEL. 053-950-5550/6370&nbsp;&nbsp;&nbsp;FAX. 053-957-4846&nbsp;&nbsp;&nbsp;E-mail. trust_it@geiit.com<br/>
+                    Copyright 2022 GET-IT TRUST-IT All rights reserved</p>
+                    <p class="select">
+                    
+                    
                     <aside class="familysite-box">
-                        <a href="" class="family-open-btn">바로가기<i class="material-icons">&#xE313;</i></a>
-                        <ul class="family-list">
-                            <li><a href="#" target="_blank" title="새창으로열기">성분분석사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">빨래사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">설거지사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">청소사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">향기사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">아기보습사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">아기씻기사업단</a></li>
-                            <li><a href="#" target="_blank" title="새창으로열기">물티슈사업단</a></li>
-                        </ul>
+                            <a href="" class="family-open-btn">관련연구소<i class="material-icons">&#xE313;</i></a>
+                            <ul class="family-list">
+                                <li><a href="#" target="_blank" title="새창으로열기">물티슈성분연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">크림성분연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">아기음식연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">임신부용품연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">보습성분연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">화장품기술연구소</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">세제성분연구소</a></li>
+                                
+                            </ul>
+                            
+                            
+                        </aside>
+                    
+                        <aside class="familysite-box">
+                            <a href="" class="family-open-btn">바로가기<i class="material-icons">&#xE313;</i></a>
+                            <ul class="family-list">
+                                <li><a href="#" target="_blank" title="새창으로열기">성분분석사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">빨래사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">설거지사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">청소사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">향기사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">아기보습사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">아기씻기사업단</a></li>
+                                <li><a href="#" target="_blank" title="새창으로열기">물티슈사업단</a></li>
+                            </ul>
+                            
+                            
+                        </aside>
                         
                         
-                    </aside>
-                    
-                    
-                </p>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    
-    
-       
-</footer>
-
-<!-- E : 푸터 -->  
-<!-- E : 푸터 --> 
+        
+        
+           
+    </footer>
 </body>
 </html>
