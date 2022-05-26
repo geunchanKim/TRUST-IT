@@ -1,14 +1,8 @@
 from django.shortcuts import render
-#from .models import Post
+from django.views.generic import ListView
+from .models import Post
 
-# Create your views here.
 
-def post_list(request):
-    
-    return render(
-        request,
-        'communication/post_list.html',
-        # {
-        #     'posts' : posts,
-        # }
-    )
+class PostList(ListView):
+    model=Post
+    ordering='-pk'
