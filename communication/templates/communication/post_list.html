@@ -2,9 +2,10 @@
 <html lang="ko">
     <body>
         <h1> communication </h1>
-        {% comment %} {% for p in post_list %}
+        {% for p in post_list %}
             <hr/>
             <h2><a href="{{ p.get_absolute_url }}">{{p.title}}</a></h2>
-            <h4>{{ p.created_at }}</h4> {% endcomment %}
+            <h4>{{ p.created_at }}</h4>
+        {% endfor %}
     </body>
 </html>

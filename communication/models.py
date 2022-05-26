@@ -5,18 +5,18 @@ import os
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
-    hook_text = models.CharField(max_length=100, blank=True)
+    #hook_text = models.CharField(max_length=100, blank=True)
     content = models.TextField()
     created_at= models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return f'[{self.pk}]{self.title}::{self.author}'
+    # def __str__(self):
+    #     return f'[{self.pk}]{self.title}::{self.author}'
     
-    def get_absolute_url(self):
-        return f'/communication/{self.pk}/'
+    # def get_absolute_url(self):
+    #     return f'/communication/{self.pk}/'
     
-    def get_file_name(self):
-        return os.path.basename(self.file_upload.name)
+    # def get_file_name(self):
+    #     return os.path.basename(self.file_upload.name)
     
-    def get_file_ext(self):
-        return self.get_file_name().split('.')[-1]
+    # def get_file_ext(self):
+    #     return self.get_file_name().split('.')[-1]
