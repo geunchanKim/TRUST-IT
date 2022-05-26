@@ -60,7 +60,7 @@ class PostList(ListView):
         context['no_category_post_count'] = Post.objects.filter(
             category=None).count()
         return context
-
+    
 
 class PostDetail(DetailView):
     model = Post
