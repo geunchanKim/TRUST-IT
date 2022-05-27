@@ -107,8 +107,8 @@
     <br>
 
     <h1>REVIEWS</h1>
-                {% if review_list.exists %} <!-- 블로그 포스트가 있을 때 -->
-                    {% for p in review_list %}
+                {% if map_review_list.exists %} <!-- 블로그 포스트가 있을 때 -->
+                    {% for p in map_review_list %}
                     <!-- Blog Post -->
                     <div class="card mb-4" id="post-{{p.pk}}">
                         {% if p.head_image %}
