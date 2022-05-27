@@ -2,7 +2,7 @@
 {% block main_area %} 
     <head>
         <style>
-            table {
+             table {
               width: 100%;
               border-top: 1px solid #444444;
               border-collapse: collapse;
@@ -15,10 +15,10 @@
                 color:#7B7473;
                 text-decoration:none;
             }
-            /* #post_title:visited {
+            #post_title:visited {
                 color : black;
                 text-decoration: none;
-              } */
+              }
             #post_title:hover {
                 color : red;
                 text-decoration: underline;
@@ -71,7 +71,7 @@
                         {% else %} none
                         {% endif %}</td> -->
                 </tr>
-                {% comment %} <div class="card mb-4" id="post-{{p.pk}}">
+                <!-- {% comment %} <div class="card mb-4" id="post-{{p.pk}}">
                     {% if p.head_image %}
                     <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image" /></a>
                     {% else %}
@@ -105,7 +105,7 @@
                         Posted on {{ p.created_at }} by
                         <a href = "#">{{p.author | upper}}</a>
                     </div>
-                </div> {% endcomment %}
+                </div> {% endcomment %} -->
                 {% endfor %}
             </tbody>
         </table>
