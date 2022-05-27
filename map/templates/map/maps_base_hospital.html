@@ -22,16 +22,11 @@
             
             <div class="col-md-4 col-lg-3">
                 <!-- Search Widget -->
-                <div class="card my-4">
-                    <h5 class="card-header">Search</h5>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." id="search-input">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button" onclick="searchPost()">Go!</button>
+                    </span>
                 </div>
 
                 <!-- Categories Widget -->
@@ -39,17 +34,15 @@
                     <div class="card-header">Trust-Location</div>
                     <div class="card-body">
                         <div class="row">
-                            <ul>
-                                <li>
-                                    <a href="/maps/nokids/">No-Kids Zone</a>
-                                </li>
-                                <li>
-                                    <a href="/maps/hospital/">Trust-Hospital</a>
-                                </li>
-                                <li>
-                                    <a href="/maps/playground/">Trust-Playground</a>
-                                </li>
-                            </ul>
+                            <li>
+                                <a href="/maps/nokids/">No-Kids Zone</a>
+                            </li>
+                            <li>
+                                <a href="/maps/hospital/">Trust-Hospital</a>
+                            </li>
+                            <li>
+                                <a href="/maps/playground/">Trust-Playground</a>
+                            </li>
                         </div>
                     </div>
                 </div>
