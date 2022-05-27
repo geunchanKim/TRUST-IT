@@ -8,17 +8,17 @@
       .caption {
         position:absolute;
         top:200px;
-        width:500px;
-        height:500px;
+        width:350px;
+        height:350px;
         background: rgba(44, 40, 40, 0.6);
         opacity: 0;
        
-        /* margin-top:175px; */
+        margin-top:145px;
         transition: all 0.6s ease-in-out;
         z-index:10;
       }
       .im{
-        float:left;
+        /* float:left; */
         overflow:hidden;
         position: relative;
       }
@@ -26,10 +26,17 @@
         opacity:1;  
         transform: translateY(-30px);
       }
-      .caption h4, p{
+      .caption h4{
+        font-size:10px;
          color:white;
         text-align: center;
-        margin-top:175px;
+        margin-top:100px;
+        /* margin-bottom: 20px; */
+      }
+      .caption p{
+        font-size:8px;
+        color:white;
+        text-align: center;
       }
 
     </style>
@@ -42,30 +49,34 @@
       imgArray[4] = "https://kizmom.hankyung.com/pdsdata/model/KIZMOM_20170424090453.jpg";
       
       function showImage(){
-        var imgNum = Math.round(Math.random()*4);
-        var objImg = document.getElementById("introImg");
-        objImg.src = imgArray[imgNum];
+        var imgNum1 = Math.round(Math.random()*4);
+        var imgNum2 = Math.round(Math.random()*4);
+        var imgNum3 = Math.round(Math.random()*4);
+        var objImg1 = document.getElementById("introImg1");
+        objImg1.src = imgArray[imgNum1];
+        var objImg2 = document.getElementById("introImg2");
+        objImg2.src = imgArray[imgNum2];
+        var objImg3 = document.getElementById("introImg3");
+        objImg3.src = imgArray[imgNum3];
       }
     </script>
 </head>
-<!-- {% comment %} <body>
-    <h1>Trust-it</h1>
-</body> {% endcomment %} -->
+
 <body onload = "showImage()">
 <main>
     {% include 'main/navbar.html' %}
 
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
-       
-        <div class="col-lg-6 col-md-9 mx-auto">
-          <img id = "introImg" class="im" width="500px" height="500px">
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <!-- <img id = "introImg" class="im" width="500px" height="500px">
             <div class="caption">
               <h4>아이들을 위한 서비스</h4>
               <br>
               <p font-size="11px">아이와 부모, 보육인 모두가 행복한 세상이 되도록</p>
               <p font-size="11px">Trust It이 함께 하겠습니다.</p>
-            </div>
+            </div> -->
+          
         </div>
       </div>
     </section>
@@ -75,52 +86,37 @@
   
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            
+            <img id = "introImg1" class="im" width="350px" height="350px">
+            <div class="caption">
+              <h4>아이들을 위한 서비스</h4>
+              <br>
+              <p>아이와 부모, 보육인 모두가 행복한 세상이 되도록</p>
+              <p>Trust It이 함께 하겠습니다.</p>
             </div>
+          
           </div>
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+           
+            <img id = "introImg2" class="im" width="350px" height="350px">
+            <div class="caption">
+              <h4>아이들을 위한 서비스</h4>
+              <br>
+              <p>아이와 부모, 보육인 모두가 행복한 세상이 되도록</p>
+              <p>Trust It이 함께 하겠습니다.</p>
             </div>
+      
           </div>
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
+            <!-- <div class="card shadow-sm"> -->
+              <img id = "introImg3" class="im" width="350px" height="350px">
+              <div class="caption">
+                <h4>아이들을 위한 서비스</h4>
+                <br>
+                <p>아이와 부모, 보육인 모두가 행복한 세상이 되도록</p>
+                <p>Trust It이 함께 하겠습니다.</p>
               </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>
