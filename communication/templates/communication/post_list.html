@@ -29,13 +29,13 @@
               }
           </style>
     </head>
+    <h1>Communication
     {%if user.is_authenticated%}
         {%if user.is_superuser or user.is_staff%}
-            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/create_post/" style="background-color:yellow; border:5px,black;">
+            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/create_post/" style="background-color:yellow; border:5px,black; ">
                 <i class="fas fa-pen"></i>&nbsp;&nbsp;새 글 작성하기</a>
         {%endif%}
     {%endif%}
-        <h1>Communication
             {% if search_info %}<small class="text-muted">{{ search_info }}</small>{%endif%}
             {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%}
             {% if tag %}<i class="fas fa-tags"></i> <span class="badge rounded-pill bg-primary">{{tag}}</span>{%endif%}</h1>
