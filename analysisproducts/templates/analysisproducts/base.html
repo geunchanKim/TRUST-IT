@@ -47,9 +47,9 @@
                     <div class="card-body">
                         <div class="row">
                             {% for category in categories %}
-                            <li><a href="{{category.get_absolute_url}}">{{category}} ({{category.product_set.count}})</a></li>
+                            <li style="color:rgb(102, 97, 97)"><a href="{{category.get_absolute_url}}" style="color:rgb(0, 0, 0)">{{category}} ({{category.product_set.count}})</a></li>
                             {% endfor %}
-                            <li><a href="/analysisproducts/category/no_category/">기타 ({{no_category_product_count}})</a></li>
+                            <li style="color:rgb(102, 97, 97)"><a href="/analysisproducts/category/no_category/"style="color:rgb(0, 0, 0)">기타 ({{no_category_product_count}})</a></li>
                         </div>
                     </div>
                 </div>
