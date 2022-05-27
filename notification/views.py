@@ -13,7 +13,7 @@ from django.db.models import Q
 class PostList(ListView):
     model = News
     ordering = '-pk'
-    paginate_by = 5
+    paginate_by = 7
 
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data()
