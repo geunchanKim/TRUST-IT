@@ -2,14 +2,14 @@
 {% block main_area %} 
     <head>
         <style>
-             table {
-              width: 100%;
-              border-top: 1px solid #444444;
-              border-collapse: collapse;
+            table {
+                width: 100%;
+                border-top: 1px solid #444444;
+                border-collapse: collapse;
             }
             th, td {
-              border-bottom: 1px solid #444444;
-              padding: 10px;
+                border-bottom: 1px solid #444444;
+                padding: 10px;
             }
             #post_title{
                 color:#7B7473;
@@ -18,24 +18,18 @@
             #post_title:visited {
                 color : black;
                 text-decoration: none;
-              }
+            }
             #post_title:hover {
                 color : red;
                 text-decoration: underline;
-              }
+            }
             #post_title:active {
                 color : green;
                 text-decoration: none;
-              }
+            }
           </style>
     </head>
-    <!-- {%if user.is_authenticated%}
-        {%if user.is_superuser or user.is_staff%}
-            <a class="btn btn-info btn-sm float-right" role="button" href="/communication/create_post/" style="background-color:yellow; border:5px,black;">
-                <i class="fas fa-pen"></i>&nbsp;&nbsp;새 글 작성하기</a>
-        {%endif%}
-    {%endif%} -->
-        <h1>Notification
+        <h1>공지
             {% if search_info %}<small class="text-muted">{{ search_info }}</small>{%endif%}
             {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%}
             {% if tag %}<i class="fas fa-tags"></i> <span class="badge rounded-pill bg-primary">{{tag}}</span>{%endif%}</h1>
@@ -59,53 +53,7 @@
                     <td><a id="post_title" href="{{ p.get_absolute_url }}">{{ p.title }}</a></td>
                     <td>{{ p.author }}</td>
                     <td>{{ p.created_at }}</td>
-                    <!-- <td>{% if p.tags.exists %}
-                            <i class="fas fa-tags"></i>
-                            {% for tag in p.tags.iterator %}
-                                <a href="{{tag.get_absoulte_url}}">
-                                    <span class="badge rounded-pill bg-primary">
-                                        {{tag}}
-                                    </span>
-                                </a>
-                            {% endfor %}
-                        {% else %} none
-                        {% endif %}</td> -->
                 </tr>
-                <!-- {% comment %} <div class="card mb-4" id="post-{{p.pk}}">
-                    {% if p.head_image %}
-                    <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head image" /></a>
-                    {% else %}
-                    <img class = "card-img-top" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image">
-                    {% endif %}
-                    <div class="card-body">
-                        {% if p.category %}
-                        <span class="badge badge-secondary float-right">{{p.category}}</span>
-                        {% else %}
-                        <span class = "badge badge-secondary float-right">미분류</span>
-                        {% endif %}
-                        <h2 class="card-title">{{ p.title }}</h2>
-                        {% if p.hook_text %}
-                            <h5 class="text-muted">{{ p.hook_text }}</h5>
-                        {% endif %}
-                        <p class="card-text">{{ p.content | truncatewords:45 }}</p>
-                        {% if p.tags.exists %}
-                            <i class="fas fa-tags"></i>
-                            {% for tag in p.tags.iterator %}
-                                <a href="{{tag.get_absoulte_url}}">
-                                    <span class="badge rounded-pill bg-primary">
-                                        {{tag}}
-                                    </span>
-                                </a>
-                            {% endfor %}
-                            <br><br>
-                        {% endif %}
-                        <a href = "{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        Posted on {{ p.created_at }} by
-                        <a href = "#">{{p.author | upper}}</a>
-                    </div>
-                </div> {% endcomment %} -->
                 {% endfor %}
             </tbody>
         </table>

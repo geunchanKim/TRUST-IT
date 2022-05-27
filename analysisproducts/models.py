@@ -30,7 +30,7 @@ class Company(models.Model):
     
 class Product(models.Model):
     title = models.CharField(max_length=30)
-    product_img = models.ImageField(upload_to='analysisproducts/images/%Y/%m/%d/', blank=True)
+    product_img = models.ImageField(upload_to='analysisproducts/images/%Y/%m/%d/')
     hook_text = models.CharField(max_length=100, blank=True)
     analysis_content = models.TextField()
     
