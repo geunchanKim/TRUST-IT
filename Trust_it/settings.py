@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'notification',
     'analysisproducts',
     'main',
+    'map',
     
     'allauth',
     'allauth.account',

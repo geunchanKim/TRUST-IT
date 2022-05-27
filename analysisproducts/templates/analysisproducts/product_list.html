@@ -5,7 +5,7 @@
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            {% comment %} <img src="images/trust_it_logo.jpg" alt="My Image"></img> {% endcomment %}
+            <img src="/images/trust_it_logo.jpg" alt="My Image"></img>
         <h1 class="fw-light">TRUST_IT</h1>
           <p class="lead text-muted">안녕하세요<br> 믿고 쓸 수 있는 TRUST_IT 입니다</p>
         </div>
@@ -18,16 +18,17 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for ap in product_list %}
             <div class="col">
-                <div class="card shadow-sm">
-                     {% comment %} <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> {% endcomment %}
-                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ ap.product_img }}"></img>
-                  <div class="card-body">
-                    <p class="card-text"> {{ ap.title }} </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-muted">{{ ap.company }}</small>
+                <a href="{{ap.get_absolute_url}}">
+                    <div class="card shadow-sm">
+                    <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ ap.product_img.url }}"></img>
+                    <div class="card-body">
+                        <p class="card-text"> {{ ap.title }} </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">{{ ap.company }}</small>
+                        </div>
                     </div>
-                  </div>
-                </div>
+                    </div>
+                </a>
             </div>
             {% endfor %}
         </div>

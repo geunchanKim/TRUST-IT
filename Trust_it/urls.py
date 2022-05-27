@@ -23,6 +23,7 @@ urlpatterns = [
     path('communication/',include('communication.urls')),
     path('analysisproducts/',include('analysisproducts.urls')),
     path('notification/',include('notification.urls')),
+    path('map/',include('map.urls')),
     path('', include('main.urls')),
 ]
 
