@@ -12,11 +12,11 @@
               padding: 10px;
             }
             #post_title{
-                color:#7B7473;
+                color:black;
                 text-decoration:none;
             }
             #post_title:visited {
-                color : black;
+                color : #7B7473;
                 text-decoration: none;
               }
             #post_title:hover {
@@ -37,7 +37,7 @@
         {%endif%}
     {%endif%}
             {% if search_info %}<small class="text-muted">{{ search_info }}</small>{%endif%}
-            {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%}
+            {% comment %} {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%} {% endcomment %}
             {% if tag %}<i class="fas fa-tags"></i> <span class="badge rounded-pill bg-primary">{{tag}}</span>{%endif%}</h1>
             {% if post_list %}
             <br>

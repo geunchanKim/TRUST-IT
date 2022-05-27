@@ -31,7 +31,7 @@
     </head>
         <h1>공지
             {% if search_info %}<small class="text-muted">{{ search_info }}</small>{%endif%}
-            {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%}
+            {% comment %} {% if category %} <span class="badge bg-secondary">{{category}}</span>{%endif%} {% endcomment %}
             {% if tag %}<i class="fas fa-tags"></i> <span class="badge rounded-pill bg-primary">{{tag}}</span>{%endif%}</h1>
             {% if news_list %}
             <br>
