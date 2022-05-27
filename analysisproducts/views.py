@@ -1,15 +1,36 @@
 from django.shortcuts import render
-from .models import Post
+from django.views.generic import ListView, DetailView
+from .models import Product,Company
 
-def index(request):
-    posts = Post.objects.all().order_by('-pk')
+ 
+def company_page(request, slug):
+    company = Company.objects.get(slug=slug)
+    product_list = company.post_set.all()
 
     return render(
         request,
-        'analysisproducts/analysis.html',
+        'analysisproducts/product_list.html',
         {
-           'posts' : posts,
+            'product_list': product_list,
+            'company': company,
         }
     )
+        
+class ProductList(ListView):
+    model= Product
+    #ordering = '-pk'
+    paginate_by = 12
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProductList, self).get_context_data()
+        return context
+
+class ProductDetail(DetailView):
+    model = Product
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetail, self).get_context_data()
+        
+        return context 
 
 # Create your views here.
